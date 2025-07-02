@@ -15,6 +15,10 @@ if !exists('g:yazi_executable')
   let g:yazi_executable = 'yazi'
 endif
 
+if !exists('g:yazi_open_multiple')
+  let g:yazi_open_multiple = 1
+endif
+
 let s:temp_dir = fnamemodify(tempname(), ':h')
 let s:selection_file = s:temp_dir . '/vim_yazi_selection_files.txt'
 
@@ -47,7 +51,14 @@ function! s:OpenSelectedFiles()
     return
   endif
 
-  execute 'tabedit ' . fnameescape(selected_files[0])
+  if g:yazi_open_multiple && len(selected_files) > 1
+    for file in selected_files
+      execute 'tabedit ' . fnameescape(file)
+    endfor
+    echo "Opened " . len(selected_files) . " files"
+  else
+    execute 'tabedit ' . fnameescape(selected_files[0])
+  endif
 endfunction
 
 function! s:LaunchYazi(path)
