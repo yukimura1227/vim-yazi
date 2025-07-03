@@ -78,7 +78,7 @@ function! s:LaunchYazi(path)
   if has('terminal')
     " using vim terminal
     let term_buf = term_start(yazi_cmd, {
-      \ 'close_cb': function('s:OnYaziTermClose'),
+      \ 'exit_cb': function('s:OnYaziExit'),
       \ 'term_finish': 'close'
     \ })
   else
@@ -88,7 +88,7 @@ function! s:LaunchYazi(path)
 endfunction
 
 " Callback function on Vim close
-function! s:OnYaziTermClose(channel)
+function! s:OnYaziExit(job, status)
   call s:OpenSelectedFiles()
 endfunction
 
