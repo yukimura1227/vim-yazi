@@ -117,7 +117,7 @@ if exists('g:yazi_replace_netrw') && g:yazi_replace_netrw
   augroup END
 endif
 
-function! s:yazi_open(...)
+function! s:YaziOpen(...)
   let path = a:0 > 0 ? a:1 : expand('%:p:h')
   call s:LaunchYazi(path)
 endfunction
@@ -125,7 +125,7 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""
 " Define commands
 """"""""""""""""""""""""""""""""""""""""
-command! -nargs=? -complete=dir Yazi call s:yazi_open(<q-args>)
+command! -nargs=? -complete=dir Yazi call s:YaziOpen(<q-args>)
 
 """"""""""""""""""""""""""""""""""""""""
 " Default KeyMap
