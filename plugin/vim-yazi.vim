@@ -92,6 +92,31 @@ function! s:OnYaziTermClose(channel)
   call s:OpenSelectedFiles()
 endfunction
 
+function! s:SuppressNetrw()
+  if exists('#FileExplorer')
+    autocmd! FileExplorer *
+  endif
+endfunction
+
+" replace netrw
+function! s:YaziHijackNetrw(path)
+  if !isdirectory(a:path)
+    return
+  endif
+  silent! bdelete
+  " NOTE: avoid E242: Can't split a window while closing another
+  call timer_start(0, { -> s:LaunchYazi(a:path) })
+endfunction
+
+" netrwの置換設定
+if exists('g:yazi_replace_netrw') && g:yazi_replace_netrw
+  augroup YaziReplaceNetrw
+    autocmd!
+    autocmd VimEnter * silent! call s:SuppressNetrw()
+    autocmd BufEnter * ++nested call s:YaziHijackNetrw(expand('%:p'))
+  augroup END
+endif
+
 function! s:yazi_open(...)
   let path = a:0 > 0 ? a:1 : expand('%:p:h')
   call s:LaunchYazi(path)
