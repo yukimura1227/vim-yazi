@@ -19,6 +19,10 @@ if !exists('g:yazi_open_multiple')
   let g:yazi_open_multiple = 1
 endif
 
+if !exists('g:yazi_no_mappings')
+  let g:yazi_no_mappings = 0
+endif
+
 let s:temp_dir = fnamemodify(tempname(), ':h')
 let s:selection_file = s:temp_dir . '/vim_yazi_selection_files.txt'
 
