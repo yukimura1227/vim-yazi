@@ -108,7 +108,6 @@ function! s:YaziHijackNetrw(path)
   call timer_start(0, { -> s:LaunchYazi(a:path) })
 endfunction
 
-" netrwの置換設定
 if exists('g:yazi_replace_netrw') && g:yazi_replace_netrw
   augroup YaziReplaceNetrw
     autocmd!
