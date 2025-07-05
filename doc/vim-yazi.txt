@@ -1,0 +1,25 @@
+*vim-yazi*			Yazi file manager integration for Vim
+
+Author:  yukimura1227
+License: MIT license
+
+==============================================================================
+#        VV     VV IIIII MM    MM        YY   YY   AAA   ZZZZZ IIIII         #
+#        VV     VV  III  MMM  MMM        YY   YY  AAAAA     ZZ  III          #
+#         VV   VV   III  MM MM MM _____   YYYYY  AA   AA   ZZ   III          #
+#          VV VV    III  MM    MM          YYY   AAAAAAA  ZZ    III          #
+#           VVV    IIIII MM    MM          YYY   AA   AA ZZZZZ IIIII         #
+==============================================================================
+
+------------------------------------------------------------------------------
+VARIABLES                                            *vim-yazi-variables*
+
+------------------------------------------------------------------------------
+COMMANDS                                             *vim-yazi-commands*
+
+------------------------------------------------------------------------------
+KEY-MAPPINGS                                         *vim-yazi-key-mappings*
+
+
+==============================================================================
+vim: ft=help tw=78 et ts=2 sw=2 sts=2 norl
