@@ -23,112 +23,18 @@ if !exists('g:yazi_no_mappings')
   let g:yazi_no_mappings = 0
 endif
 
-let s:temp_dir = fnamemodify(tempname(), ':h')
-let s:selection_file = s:temp_dir . '/vim_yazi_selection_files.txt'
-
-function! s:CheckYaziAvailable()
-  if !executable(g:yazi_executable)
-    echohl ErrorMsg
-    echo "Error: yazi is not installed or not found in PATH"
-    echohl None
-    return 0
-  endif
-  return 1
-endfunction
-
-function! s:OpenSelectedFiles()
-  if !filereadable(s:selection_file)
-    return
-  endif
-
-  let selected_files = []
-  for line in readfile(s:selection_file)
-    let line = trim(line)
-    if !empty(line) && filereadable(line)
-      call add(selected_files, line)
-    endif
-  endfor
-
-  call delete(s:selection_file)
-
-  if empty(selected_files)
-    return
-  endif
-
-  if g:yazi_open_multiple && len(selected_files) > 1
-    for file in selected_files
-      execute 'tabedit ' . fnameescape(file)
-    endfor
-    echo "Opened " . len(selected_files) . " files"
-  else
-    execute 'tabedit ' . fnameescape(selected_files[0])
-  endif
-endfunction
-
-function! s:LaunchYazi(path)
-  if !s:CheckYaziAvailable()
-    return
-  endif
-
-  let initial_path = empty(a:path) ? getcwd() : a:path
-  if !isdirectory(initial_path)
-    " using parent directory
-    let initial_path = fnamemodify(initial_path, ':h')
-  endif
-  let yazi_cmd = g:yazi_executable . ' --chooser-file=' . shellescape(s:selection_file)
-  let yazi_cmd .= ' ' . shellescape(initial_path)
-  let yazi_cmd = 'sh -c "' . yazi_cmd . '"'
-
-  if has('terminal')
-    " using vim terminal
-    let term_buf = term_start(yazi_cmd, {
-      \ 'exit_cb': function('s:OnYaziExit'),
-      \ 'term_finish': 'close'
-    \ })
-  else
-    execute '!' . yazi_cmd
-    call s:OpenSelectedFiles()
-  endif
-endfunction
-
-" Callback function on Vim close
-function! s:OnYaziExit(job, status)
-  call s:OpenSelectedFiles()
-endfunction
-
-function! s:SuppressNetrw()
-  if exists('#FileExplorer')
-    autocmd! FileExplorer *
-  endif
-endfunction
-
-" replace netrw
-function! s:YaziHijackNetrw(path)
-  if !isdirectory(a:path)
-    return
-  endif
-  silent! bdelete
-  " NOTE: avoid E242: Can't split a window while closing another
-  call timer_start(0, { -> s:LaunchYazi(a:path) })
-endfunction
-
 if exists('g:yazi_replace_netrw') && g:yazi_replace_netrw
   augroup YaziReplaceNetrw
     autocmd!
-    autocmd VimEnter * silent! call s:SuppressNetrw()
-    autocmd BufEnter * ++nested call s:YaziHijackNetrw(expand('%:p'))
+    autocmd VimEnter * silent! call vim_yazi#SuppressNetrw()
+    autocmd BufEnter * ++nested call vim_yazi#YaziHijackNetrw(expand('%:p'))
   augroup END
 endif
-
-function! s:YaziOpen(...)
-  let path = a:0 > 0 ? a:1 : expand('%:p:h')
-  call s:LaunchYazi(path)
-endfunction
 
 """"""""""""""""""""""""""""""""""""""""
 " Define commands
 """"""""""""""""""""""""""""""""""""""""
-command! -nargs=? -complete=dir Yazi call s:YaziOpen(<q-args>)
+command! -nargs=? -complete=dir Yazi call vim_yazi#YaziOpen(<q-args>)
 
 """"""""""""""""""""""""""""""""""""""""
 " Default KeyMap
