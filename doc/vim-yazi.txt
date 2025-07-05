@@ -12,14 +12,31 @@ License: MIT license
 ==============================================================================
 
 ------------------------------------------------------------------------------
-VARIABLES                                            *vim-yazi-variables*
+VARIABLES                                           *vim-yazi-variables*
+
+g:yazi_executable                                   *g:yazi_executable*
+Path to yazi executable (default: 'yazi')
+
+g:yazi_open_multiple                                *g:yazi_open_multiple*
+Enable opening multiple files (default: 1)
+
+g:yazi_replace_netrw                                *g:yazi_replace_netrw*
+Replace netrw with yazi (default: 0)
+
+g:yazi_no_mappings                                  *g:yazi_no_mappings*
+Disable default key mappings (default: 0)
 
 ------------------------------------------------------------------------------
-COMMANDS                                             *vim-yazi-commands*
+COMMANDS                                            *vim-yazi-commands*
+
+:Yazi [path]                                        *:Yazi*
+Launch yazi in the specified directory (defaults to current file's directory) |
 
 ------------------------------------------------------------------------------
-KEY-MAPPINGS                                         *vim-yazi-key-mappings*
+KEY-MAPPINGS                                        *vim-yazi-key-mappings*
 
+<leader>y                                           *vim-yazi-<leader>y*
+Launch yazi
 
 ==============================================================================
 vim: ft=help tw=78 et ts=2 sw=2 sts=2 norl
