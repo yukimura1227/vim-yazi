@@ -10,6 +10,8 @@ A Vim plugin that integrates the [yazi](https://github.com/sxyazi/yazi) terminal
 - 🔄 Optional netrw replacement
 - ⚡ Works with both Vim 8+ and Neovim
 
+![vim-yazi-sample](./assets/vim-yazi-sample.gif)
+
 ## Requirements
 
 - Vim 8.0+ or Neovim 0.4+
