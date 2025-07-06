@@ -25,12 +25,6 @@ A Vim plugin that integrates the [yazi](https://github.com/sxyazi/yazi) terminal
 Plug 'yukimura1227/vim-yazi'
 ```
 
-### Using packer.nvim (Neovim)
-
-```lua
-use 'yukimura1227/vim-yazi'
-```
-
 ### Manual Installation
 
 1. Download the plugin file
