@@ -7,10 +7,8 @@ A Vim plugin that integrates the [yazi](https://github.com/sxyazi/yazi) terminal
 - 🚀 Launch yazi file manager from within Vim/Neovim
 - 📁 Open selected files in Vim buffers automatically
 - 🎯 Support for opening multiple files at once
-- 🪟 Floating window support for Neovim
 - 🔄 Optional netrw replacement
 - ⚡ Works with both Vim 8+ and Neovim
-- 🎨 Customizable window size and behavior
 
 ## Requirements
 
