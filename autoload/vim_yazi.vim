@@ -11,6 +11,32 @@ function! vim_yazi#CheckYaziAvailable()
   return 1
 endfunction
 
+function! vim_yazi#CreateFloatingWindow() abort
+  if !has('nvim')
+    return 0
+  endif
+
+  let width = float2nr(&columns * 0.9)
+  let height = float2nr(&lines * 0.9)
+  let row = float2nr((&lines - height) / 2)
+  let col = float2nr((&columns - width) / 2)
+
+  let opts = {
+    \ 'relative': 'editor',
+    \ 'width': width,
+    \ 'height': height,
+    \ 'row': row,
+    \ 'col': col,
+    \ 'style': 'minimal',
+    \ 'border': 'rounded'
+  \ }
+
+  let buf = nvim_create_buf(v:false, v:true)
+  let win = nvim_open_win(buf, v:true, opts)
+
+  return win
+endfunction
+
 function! vim_yazi#LaunchYazi(path)
   if !vim_yazi#CheckYaziAvailable()
     return
@@ -25,7 +51,13 @@ function! vim_yazi#LaunchYazi(path)
   let yazi_cmd .= ' ' . shellescape(initial_path)
   let yazi_cmd = 'sh -c "' . yazi_cmd . '"'
 
-  if has('terminal')
+  if has('nvim')
+    let win = vim_yazi#CreateFloatingWindow()
+    call termopen(yazi_cmd, {
+      \ 'on_exit': {job_id, exit_code, event -> vim_yazi#OnYaziExit(win, exit_code)}
+      \ })
+    startinsert
+  elseif has('terminal')
     " using vim terminal
     let term_buf = term_start(yazi_cmd, {
       \ 'exit_cb': function('vim_yazi#OnYaziExit'),
