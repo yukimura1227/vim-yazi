@@ -61,7 +61,8 @@ function! vim_yazi#LaunchYazi(path)
     " using vim terminal
     let term_buf = term_start(yazi_cmd, {
       \ 'exit_cb': function('vim_yazi#OnYaziExit'),
-      \ 'term_finish': 'close'
+      \ 'term_finish': 'close',
+      \ 'curwin': 1,
     \ })
   else
     execute '!' . yazi_cmd
