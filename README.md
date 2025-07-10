@@ -2,6 +2,8 @@
 
 A Vim plugin that integrates the [yazi](https://github.com/sxyazi/yazi) terminal file manager with Vim/Neovim.
 
+![vim-yazi-logo](./assets/vim-yazi-logo.png)
+
 ## Features
 
 - 🚀 Launch yazi file manager from within Vim/Neovim
