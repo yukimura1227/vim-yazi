@@ -1,8 +1,12 @@
-# vim-yazi
+<div align="center">
+   <img src="./assets/vim-yazi-logo.png" alt="vim-yazi logo" width="256" height="256"> 
+</div>
+
+# vim-yazi 
+
 
 A Vim plugin that integrates the [yazi](https://github.com/sxyazi/yazi) terminal file manager with Vim/Neovim.
 
-![vim-yazi-logo](./assets/vim-yazi-logo.png)
 
 ## Features
 
