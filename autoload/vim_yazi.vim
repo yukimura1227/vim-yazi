@@ -62,6 +62,8 @@ function! vim_yazi#LaunchYazi(path)
     let term_buf = term_start(yazi_cmd, {
       \ 'exit_cb': function('vim_yazi#OnYaziExit'),
       \ 'term_finish': 'close',
+      \ 'term_rows': winheight('%'),
+      \ 'term_cols': winwidth('%'),
       \ 'curwin': 1,
     \ })
   else
