@@ -35,6 +35,7 @@ endif
 " Define commands
 """"""""""""""""""""""""""""""""""""""""
 command! -nargs=? -complete=dir Yazi call vim_yazi#YaziOpen(<q-args>)
+command! -nargs=0 YaziCwd Yazi .
 
 """"""""""""""""""""""""""""""""""""""""
 " Default KeyMap
