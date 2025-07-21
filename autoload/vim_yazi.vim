@@ -37,7 +37,7 @@ function! vim_yazi#CreateFloatingWindow() abort
   return win
 endfunction
 
-function! vim_yazi#LaunchYazi(path)
+function! vim_yazi#LaunchYazi(path, entry = '')
   if !vim_yazi#CheckYaziAvailable()
     return
   endif
@@ -47,7 +47,7 @@ function! vim_yazi#LaunchYazi(path)
     " using parent directory
     let initial_path = fnamemodify(initial_path, ':h')
   endif
-  let yazi_cmd = g:yazi_executable . ' --chooser-file=' . shellescape(s:selection_file)
+  let yazi_cmd = g:yazi_executable . ' ' . a:entry . ' --chooser-file=' . shellescape(s:selection_file)
   let yazi_cmd .= ' ' . shellescape(initial_path)
   let yazi_cmd = 'sh -c "' . yazi_cmd . '"'
 
@@ -73,8 +73,9 @@ function! vim_yazi#LaunchYazi(path)
 endfunction
 
 function! vim_yazi#YaziOpen(...)
+  let entry = a:0 > 0 && !empty(a:1) ? '' : expand('%')
   let path = a:0 > 0 ? a:1 : expand('%:p:h')
-  call vim_yazi#LaunchYazi(path)
+  call vim_yazi#LaunchYazi(path, entry)
 endfunction
 
 function! vim_yazi#OpenSelectedFiles()
