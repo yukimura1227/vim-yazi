@@ -44,7 +44,7 @@ Plug 'yukimura1227/vim-yazi'
 
 | Command | Description |
 |---------|-------------|
-| `:Yazi [path]` | Launch yazi in the specified directory (defaults to current file's directory) |
+| `:Yazi [path]` | Launch yazi in the specified path (defaults to current file) |
 
 ### Default Key Mappings
 
@@ -94,10 +94,10 @@ nnoremap <silent> <C-n> :Yazi<CR>
 ### Basic Usage
 
 ```vim
-" Open yazi in current directory
+" Open yazi in current file
 :Yazi
 
-" Open yazi in a specific directory
+" Open yazi in a specific path
 :Yazi ~/Documents
 ```
 
