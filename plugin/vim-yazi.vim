@@ -34,7 +34,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""
 " Define commands
 """"""""""""""""""""""""""""""""""""""""
-command! -nargs=? -complete=dir Yazi call vim_yazi#YaziOpen(<q-args>)
+command! -nargs=? -complete=file Yazi call vim_yazi#YaziOpen(<q-args>)
 
 """"""""""""""""""""""""""""""""""""""""
 " Default KeyMap
