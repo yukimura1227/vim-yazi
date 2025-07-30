@@ -45,6 +45,7 @@ Plug 'yukimura1227/vim-yazi'
 | Command | Description |
 |---------|-------------|
 | `:Yazi [path]` | Launch yazi in the specified path (defaults to current file) |
+| `:YaziCwd` | Launch yazi in the current working directory (equivalent to `:Yazi .`) |
 
 ### Default Key Mappings
 

@@ -32,6 +32,9 @@ COMMANDS                                            *vim-yazi-commands*
 :Yazi [path]                                        *:Yazi*
 Launch yazi in the specified directory (defaults to current file's directory) |
 
+:YaziCwd                                            *:YaziCwd*
+Launch yazi in the current working directory (equivalent to :Yazi .)
+
 ------------------------------------------------------------------------------
 KEY-MAPPINGS                                        *vim-yazi-key-mappings*
 

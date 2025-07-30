@@ -68,8 +68,8 @@ function! vim_yazi#LaunchYazi(path)
   endif
 endfunction
 
-function! vim_yazi#YaziOpen(...)
-  let path = a:0 > 0 && !empty(a:1) ? a:1 : expand('%:p')
+function! vim_yazi#YaziOpen(path)
+  let path = empty(a:path) ? expand('%:p') : a:path
   call vim_yazi#LaunchYazi(path)
 endfunction
 
