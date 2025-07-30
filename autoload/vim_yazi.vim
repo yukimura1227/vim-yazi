@@ -43,10 +43,6 @@ function! vim_yazi#LaunchYazi(path)
   endif
 
   let initial_path = empty(a:path) ? getcwd() : a:path
-  if !isdirectory(initial_path)
-    " using parent directory
-    let initial_path = fnamemodify(initial_path, ':h')
-  endif
   let yazi_cmd = g:yazi_executable . ' --chooser-file=' . shellescape(s:selection_file)
   let yazi_cmd .= ' ' . shellescape(initial_path)
   let yazi_cmd = 'sh -c "' . yazi_cmd . '"'
@@ -73,7 +69,7 @@ function! vim_yazi#LaunchYazi(path)
 endfunction
 
 function! vim_yazi#YaziOpen(path)
-  let path = empty(a:path) ? expand('%:p:h') : a:path
+  let path = empty(a:path) ? expand('%:p') : a:path
   call vim_yazi#LaunchYazi(path)
 endfunction
 
